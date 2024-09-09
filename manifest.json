@@ -1,0 +1,9 @@
+{
+    "manifest_version": 3,
+    "name": "SteamSpamBlocker",
+    "version": 1,
+    "content_scripts":{
+        "matches": ["*://steamcommunity.com/app/*/discussions"], // Works on any game's discussion page w HTTP or HTTPS
+        "js": ["block_spam_discussions"]
+    }
+}
