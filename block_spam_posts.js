@@ -1,4 +1,4 @@
-const filterPosts = (blacklisted_words) => {
+const filter_spam_posts = (blacklisted_words) => {
 
     const posts = document.querySelectorAll(".forum_topic");
     let posts_removed_count = 0;
@@ -6,8 +6,9 @@ const filterPosts = (blacklisted_words) => {
     posts.forEach((post) => {
 
         const post_title = post.querySelector(".forum_topic_name").textContent.toLowerCase();
+        const post_content_preview = post.getAttribute("data-tooltip-forum");
 
-        if (blacklisted_words.some(word => post_title.includes(word.toLowerCase()))) {
+        if (blacklisted_words.some(word => post_title.includes(word.toLowerCase())) || blacklisted_words.some(word => post_content_preview.includes(word))) {
             post.remove();
             ++posts_removed_count;
         }
@@ -18,5 +19,5 @@ const filterPosts = (blacklisted_words) => {
 
 };
 
-const keywordsToFilter = ["spam", "advertisement", "offensive"]; // Replace it w whatever words you wish to filter out
-console.log(`Hid ${filterPosts(keywordsToFilter)} spam post(s)!`);
+const blacklisted_words = ["spam", "advertisement", "offensive"]; // Replace it w whatever words you wish to filter out
+console.log(`Hid ${filter_spam_posts(blacklisted_words)} spam post(s)!`);
