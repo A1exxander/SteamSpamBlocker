@@ -2,10 +2,14 @@
     "manifest_version": 3,
     "name": "SteamSpamBlocker",
     "version": "1.0.0",
-    "content_scripts":[
+    "content_scripts": [
         {
-            "matches": ["*://steamcommunity.com/app/*/discussions"],
-            "js": ["block_spam_posts.js"]
+            "matches": ["*://steamcommunity.com/app/*/discussions/*"],
+            "js": ["block_spam_posts.js"],
+            "run_at": "document_end"
         }
+    ],
+    "host_permissions": [
+        "*://steamcommunity.com/"
     ]
 }
